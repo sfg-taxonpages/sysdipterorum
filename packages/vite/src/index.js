@@ -1,5 +1,4 @@
 import { defineConfig } from 'vite'
-import { loadConfiguration } from './src/utils/loadConfiguration.js'
 import { VitePluginRadar } from 'vite-plugin-radar'
 import path from 'path'
 import Vue from '@vitejs/plugin-vue'
@@ -8,12 +7,12 @@ import markdownAnchor from 'markdown-it-anchor'
 import {
   relativeToRouterPlugin,
   variableReplacementPlugin
-} from './src/plugins/markdown'
+} from '../../../src/plugins/markdown/index.js'
 import Pages from 'vite-plugin-pages'
-import './src/utils/globalVars'
+import '../../../src/utils/globalVars.js'
 
-export default () => {
-  const configuration = loadConfiguration(__dirname)
+export function makeViteConfiguration(configuration) {
+  const rootFolder = process.cwd()
 
   return defineConfig({
     base: configuration.base_url,
@@ -22,8 +21,8 @@ export default () => {
     },
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, './src'),
-        '#': path.resolve(__dirname, '/')
+        '@': path.resolve(rootFolder, './src'),
+        '#': path.resolve(rootFolder, '/')
       }
     },
     plugins: [

@@ -1,7 +1,14 @@
 {
   "name": "taxonpages",
   "version": "0.0.0",
+  "private": false,
   "type": "module",
+  "bin": {
+    "taxonpages": "bin/taxonpages.js"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "dev:ssr": "node server",
     "dev": "vite dev",
@@ -19,7 +26,6 @@
     "@nuxt/devalue": "^2.0.2",
     "@unhead/ssr": "^1.7.4",
     "axios": "^1.5.0",
-    "js-yaml": "^4.1.0",
     "leaflet": "^1.9.4",
     "leaflet.markercluster": "^1.5.3",
     "markdown-it-anchor": "^8.6.7",
@@ -31,7 +37,6 @@
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",
     "@unhead/ssr": "^1.7.4",
-    "@vitejs/plugin-vue": "^4.3.4",
     "autoprefixer": "^10.4.16",
     "compression": "^1.7.4",
     "eslint": "^8.49.0",
@@ -40,10 +45,6 @@
     "minimist": "^1.2.8",
     "postcss": "^8.4.30",
     "sass": "^1.68.0",
-    "tailwindcss": "^3.3.3",
-    "vite": "^4.4.9",
-    "vite-plugin-md": "^0.21.5",
-    "vite-plugin-pages": "^0.31.0",
-    "vite-plugin-radar": "^0.9.1"
+    "tailwindcss": "^3.3.3"
   }
 }

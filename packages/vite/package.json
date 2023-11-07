@@ -1,0 +1,35 @@
+{
+  "name": "@taxonpages/vite",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.js",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Species File Group",
+  "license": "ISC",
+  "dependencies": {
+    "yargs-parser": "21.1.1"
+  },
+  "devDependencies": {
+    "vite": "^4.5.0",
+    "@tailwindcss/typography": "^0.5.10",
+    "@unhead/ssr": "^1.7.4",
+    "@vitejs/plugin-vue": "^4.3.4",
+    "autoprefixer": "^10.4.16",
+    "compression": "^1.7.4",
+    "eslint": "^8.49.0",
+    "eslint-plugin-vue": "^9.17.0",
+    "minimist": "^1.2.8",
+    "postcss": "^8.4.30",
+    "sass": "^1.68.0",
+    "tailwindcss": "^3.3.3",
+    "vite-plugin-md": "^0.21.5",
+    "vite-plugin-pages": "^0.31.0",
+    "vite-plugin-radar": "^0.9.1"
+  }
+}
