@@ -1,3 +1,5 @@
+import path from 'node:path'
+
 function withOpacity(variableName) {
   return ({ opacityValue }) => {
     if (opacityValue !== undefined) {
@@ -7,11 +9,12 @@ function withOpacity(variableName) {
   }
 }
 
-module.exports = {
+const resolve = (p) => path.resolve(__dirname, p)
+
+export default {
   content: [
-    './index.html',
-    './vite.config.js',
-    './src/**/*.{vue,js,ts,jsx,tsx,md}',
+    resolve('./index.html'),
+    resolve('./src/**/*.{vue,js,ts,jsx,tsx,md}'),
     './pages/**/*.{vue,md}',
     './panels/**/*.{vue,md}',
     './components/**/*.{vue,md}',

@@ -3,7 +3,11 @@ import fs from 'node:fs'
 import path from 'node:path'
 import express from 'express'
 
-export async function createServer({
+function makeAppContainer(app = '') {
+  return `<div id="app">${app}</div>`
+}
+
+export async function createSSRServer({
   configuration = {},
   root = process.cwd(),
   isProd = process.env.NODE_ENV === 'production',
@@ -97,8 +101,4 @@ export async function createServer({
   })
 
   return { app, vite }
-}
-
-function makeAppContainer(app = '') {
-  return `<div id="app">${app}</div>`
 }

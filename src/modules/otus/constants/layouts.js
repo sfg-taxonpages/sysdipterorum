@@ -1,11 +1,20 @@
 import { DEFAULT_OVERVIEW_LAYOUT } from './layouts/index.js'
 
-const panelEntries = Object.values(
-  import.meta.glob(['../components/Panel/*/main.js', '#/panels/*/main.js'], {
+const panelInternalEntries = Object.values(
+  import.meta.glob('@/modules/otus/components/Panel/**/main.js', {
     eager: true,
     import: 'default'
   })
 )
+
+const panelExternalEntries = Object.values(
+  import.meta.glob('~/panels/**/main.js', {
+    eager: true,
+    import: 'default'
+  })
+)
+
+const panelEntries = [...panelInternalEntries, ...panelExternalEntries]
 
 const { taxa_page } = __APP_ENV__
 

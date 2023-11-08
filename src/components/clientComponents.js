@@ -1,13 +1,17 @@
 export function registerOnlyClientComponents(app) {
-  const files = import.meta.glob(
-    ['@/components/**/*.client.vue', '#/components/**/*.client.vue'],
-    {
-      eager: true,
-      import: 'default'
-    }
-  )
+  const internalComponets = import.meta.glob('@/components/**/*.client.vue', {
+    eager: true,
+    import: 'default'
+  })
+  const externalComponents = import.meta.glob('~/components/**/*.client.vue', {
+    eager: true,
+    import: 'default'
+  })
 
-  setGlobalComponents(app, files)
+  setGlobalComponents(
+    app,
+    Object.assign({}, internalComponets, externalComponents)
+  )
 }
 
 function setGlobalComponents(app, files) {

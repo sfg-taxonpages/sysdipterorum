@@ -1,6 +1,6 @@
 {
   "name": "@taxonpages/vite",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "type": "module",
   "exports": {
@@ -13,9 +13,7 @@
   "author": "Species File Group",
   "license": "ISC",
   "dependencies": {
-    "yargs-parser": "21.1.1"
-  },
-  "devDependencies": {
+    "yargs-parser": "21.1.1",
     "vite": "^4.5.0",
     "@tailwindcss/typography": "^0.5.10",
     "@unhead/ssr": "^1.7.4",

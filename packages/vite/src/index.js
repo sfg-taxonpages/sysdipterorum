@@ -1,29 +1,46 @@
 import { defineConfig } from 'vite'
 import { VitePluginRadar } from 'vite-plugin-radar'
-import path from 'path'
-import Vue from '@vitejs/plugin-vue'
-import Markdown from 'vite-plugin-md'
-import markdownAnchor from 'markdown-it-anchor'
 import {
   relativeToRouterPlugin,
   variableReplacementPlugin
-} from '../../../src/plugins/markdown/index.js'
+} from './plugins/markdown/index.js'
+import { fileURLToPath } from 'node:url'
+import { resolve, relative } from 'node:path'
+import markdownAnchor from 'markdown-it-anchor'
+import Vue from '@vitejs/plugin-vue'
+import Markdown from 'vite-plugin-md'
 import Pages from 'vite-plugin-pages'
-import '../../../src/utils/globalVars.js'
 
-export function makeViteConfiguration(configuration) {
+export function makeViteConfiguration({ appConfig, plugins = [], root }) {
   const rootFolder = process.cwd()
+  const __dirname = fileURLToPath(new URL('../../..', import.meta.url))
 
   return defineConfig({
-    base: configuration.base_url,
+    root,
+    base: appConfig.base_url,
     define: {
-      __APP_ENV__: configuration
+      __APP_ENV__: appConfig
     },
     resolve: {
       alias: {
-        '@': path.resolve(rootFolder, './src'),
-        '#': path.resolve(rootFolder, '/')
+        '@': resolve(__dirname, './src'),
+        '~/panels': rootFolder + '/panels',
+        '~/pages': rootFolder + '/pages',
+        '~/components': rootFolder + '/components',
+        '~/modules': rootFolder + '/modules'
       }
+    },
+    cacheDir: resolve(rootFolder, 'node_modules/.cache/vite'),
+    optimizeDeps: {
+      include: ['leaflet']
+    },
+    build: {
+      rollupOptions: {
+        input: {
+          main: resolve(__dirname, 'index.html')
+        }
+      },
+      outDir: resolve(rootFolder, 'dist')
     },
     plugins: [
       Vue({
@@ -35,15 +52,18 @@ export function makeViteConfiguration(configuration) {
         markdownItSetup(md) {
           md.use(markdownAnchor)
           md.use(variableReplacementPlugin, {
-            variables: { ...configuration }
+            variables: { ...appConfig }
           })
-          md.use(relativeToRouterPlugin, configuration)
+          md.use(relativeToRouterPlugin, appConfig)
         }
       }),
 
       Pages({
-        dirs: 'pages',
-        exclude: ['**/components/*.vue'],
+        dirs: [
+          { dir: 'pages', baseRoute: '' },
+          { dir: '../../pages', baseRoute: '' }
+        ],
+        exclude: ['**/components/**/*.vue'],
         extensions: ['vue', 'md'],
         extendRoute(route) {
           if (route.path === '/home') {
@@ -56,8 +76,13 @@ export function makeViteConfiguration(configuration) {
       }),
 
       VitePluginRadar({
-        ...configuration?.analytics_services
-      })
+        ...appConfig?.analytics_services
+      }),
+
+      ...plugins
     ]
   })
 }
+
+export { buildTaxonPages } from './build.js'
+export { createServer, build } from 'vite'

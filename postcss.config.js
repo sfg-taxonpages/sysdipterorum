@@ -1,10 +1,10 @@
-const fs = require('fs')
-const {
+import fs from 'fs'
+import {
   userTailwindConfigPath,
   defaultTailwindConfigPath
-} = require('./src/constants/configPaths.cjs')
+} from './src/constants/configPaths.js'
 
-module.exports = {
+export default {
   plugins: {
     'tailwindcss/nesting': {},
     tailwindcss: {
