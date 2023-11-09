@@ -5,7 +5,7 @@ import {
   variableReplacementPlugin
 } from './plugins/markdown/index.js'
 import { fileURLToPath } from 'node:url'
-import { resolve, relative } from 'node:path'
+import { resolve } from 'node:path'
 import markdownAnchor from 'markdown-it-anchor'
 import Vue from '@vitejs/plugin-vue'
 import Markdown from 'vite-plugin-md'
@@ -24,10 +24,7 @@ export function makeViteConfiguration({ appConfig, plugins = [], root }) {
     resolve: {
       alias: {
         '@': resolve(__dirname, './src'),
-        '~/panels': rootFolder + '/panels',
-        '~/pages': rootFolder + '/pages',
-        '~/components': rootFolder + '/components',
-        '~/modules': rootFolder + '/modules'
+        '~': rootFolder + '/'
       }
     },
     cacheDir: resolve(rootFolder, 'node_modules/.cache/vite'),

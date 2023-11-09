@@ -1,6 +1,6 @@
-import { createApp } from './main'
-import { registerOnlyClientComponents } from '@/components/clientComponents'
-import { registerGlobalComponents } from './components/globalComponents'
+import { createApp } from './main.js'
+import { registerOnlyClientComponents } from '@/components/clientComponents.js'
+import { registerGlobalComponents } from '@/components/globalComponents.js'
 
 const originUrl = window.location.origin
 const storeInitialState = window.initialState
