@@ -1,6 +1,6 @@
 ---
 title: Systema Dipterorum - Test Version
-lead: Taxa from your imagination to the web
+lead: Taxa from Systema Dipterorum on the web
 project: Systema Dipterorum
 ---
    
@@ -14,8 +14,7 @@ Welcome to *{{ frontmatter.project }}*, a website of taxon pages generated from 
 <autocomplete-otu class="w-80"/>
 
 ## Announcements
-* 5/1/2022 - We've grown!  
-* 1/1/2022 - Our website is live!
+* 2024/01/23 - Test version is live!
 
 ## Find out more
 Learn how to collaborate with the {{ frontmatter.title }} project. Contact information, technical details, and more are available at [About](/about).
