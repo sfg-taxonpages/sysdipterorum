@@ -1,7 +1,7 @@
 ---
-title: The title
+title: Systema Dipterorum - Test Version
 lead: Taxa from your imagination to the web
-project: Your project
+project: Systema Dipterorum
 ---
    
 # {{frontmatter.title}}
