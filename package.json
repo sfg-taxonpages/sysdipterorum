@@ -12,8 +12,6 @@
     "setup": "taxonpages setup"
   },
   "dependencies": {
-    "@jlpereira/taxonpages-panel-inaturalist": "latest",
-    "@jlpereira/taxonpages-panel-xeno-canto": "latest",
     "@sfgrp/taxonpages": "latest"
   }
 }
